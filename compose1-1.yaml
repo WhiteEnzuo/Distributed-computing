@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  master:
+    build:
+      context: ./master
+    ports:
+      - "8089:8080"  # 项目1的端口映射，可以根据实际情况修改
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.2
+
+  node1:
+    build:
+      context: ./node
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.3
+
+networks:
+  my-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16  # 设置容器 IP 地址的子网范围

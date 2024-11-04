@@ -1,0 +1,1 @@
+sudo docker logs yjs_node_1 >node.log
